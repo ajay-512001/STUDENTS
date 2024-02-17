@@ -1,0 +1,62 @@
+<div class="widget-front-panel">
+    <div class="header"><mat-icon>home</mat-icon> <span class="headerNmae">Admin List</span></div>
+
+    <div class="widget-top-panel w-full" style="border:0px;">
+
+        <div class="mat-elevation-z8">
+          <div class="tableWrapper">
+            <table mat-table [dataSource]="dataSource" class="tableColor">
+
+              <ng-container matColumnDef="view">
+                <th mat-header-cell *matHeaderCellDef> View </th>
+                <td mat-cell *matCellDef="let element"><mat-icon (click)= "viewRoleDetails(element)" class="cursor-pointer">visibility</mat-icon> </td>
+              </ng-container>
+
+              <ng-container matColumnDef="user_id">
+                <th mat-header-cell *matHeaderCellDef> UserId </th>
+                <td mat-cell *matCellDef="let element"> {{element.user_id}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="admin_id">
+                <th mat-header-cell *matHeaderCellDef> Admin Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.admin_id}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="admin_name">
+                <th mat-header-cell *matHeaderCellDef> Admin Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.admin_name}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="hire_at_disp">
+                <th mat-header-cell *matHeaderCellDef> Hire Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.hire_at_disp}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="photo">
+                <th mat-header-cell *matHeaderCellDef> Picture </th>
+                <td mat-cell style="position: relative; width: 10%;" *matCellDef="let element"> <img style="width: 50%; margin: 5px; aspect-ratio: 1/1; object-fit: cover; border-radius: 50%;" [src]="element.photo" alt=""></td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            </div>
+            <mat-paginator class="pagination tableColor" [pageSizeOptions]="[10,50,100,500,1000]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div>
+
+
+
+<dialog id="errorModal" class="digModal">
+  <div class="digModelInner">
+    <div class="headerError">Attention</div>
+    <div class="msgError">{{errormsg}}</div>
+    <button mat-raised-button color="warn" class="mt-6" onclick="errorModal.close()">Close</button>
+  </div>
+</dialog>

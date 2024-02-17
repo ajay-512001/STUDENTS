@@ -1,0 +1,22 @@
+<div class="w-full min-h-full bg-black flex flex-col">
+    <div *ngIf="roleId == 1" class="flex flex-col">
+        <button mat-button color="primary" (click)="goTo('ul')">User List</button>
+        <button mat-button color="primary" (click)="goTo('a')">Admin</button>
+        <button mat-button color="primary" (click)="goTo('aedit')">Edit Admin</button>
+        <button mat-button color="primary" (click)="goTo('afind')">Find Admin</button>
+    </div>
+    <div *ngIf="roleId == 2 || roleId == 1" class="flex flex-col">
+        <button mat-button color="primary" (click)="goTo('t')">Teacher</button>
+        <span *ngIf="roleId == 1" class="flex flex-col">
+            <button mat-button color="primary" (click)="goTo('tedit')">Edit Teacher</button>
+            <button mat-button color="primary" (click)="goTo('tfind')">Find Teacher</button>
+        </span>
+    </div>
+    <div *ngIf="roleId == 3 || roleId == 2 || roleId == 1" class="flex flex-col">
+        <button mat-button color="primary" (click)="goTo('s')">Student</button>
+        <span *ngIf="roleId == 1 || roleId == 2" class="flex flex-col">
+            <button mat-button color="primary" (click)="goTo('sedit')">Edit Student</button>
+            <button mat-button color="primary" (click)="goTo('sfind')">Find Student</button>
+        </span>
+    </div>
+</div>

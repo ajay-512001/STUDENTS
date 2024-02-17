@@ -1,0 +1,32 @@
+::ng-deep .mat-menu-content {
+    background-color: #fff;
+  }
+
+  :host ::ng-deep .mat-menu-content {
+    background-color: #fff;
+  }
+
+  ::ng-deep {
+    .mat-menu-content {
+      background-color: #fff;
+    }
+  }
+
+
+  .toolbarMenuButton{
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 500;
+    background-color: #fff;
+    width: 45vh;
+    text-align: center;
+    margin: 0.8px;
+    padding: 20px 0;
+    letter-spacing: 1px;
+  }
+
+  .toolbarMenuButton:hover{
+    background-color: #7f7f7f;
+    cursor: pointer;
+    color: #fff;
+  }

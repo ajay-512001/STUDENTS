@@ -1,1 +1,246 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$students-primary: mat.define-palette(mat.$indigo-palette);
+$students-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$students-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$students-theme: mat.define-light-theme((
+  color: (
+    primary: $students-primary,
+    accent: $students-accent,
+    warn: $students-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($students-theme);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hideScrollbar::-webkit-scrollbar{
+    display: none;
+}
+
+html, body { height: 100%; }
+body { color : #000;margin: 0;background-color : azure; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.widget-top-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  position: relative;
+  visibility: visible;
+  width: 98% !important;
+  opacity: 1;
+  z-index: 11;
+  border-radius: 5px;
+  transition: transform 0.5s ease-out 0s, visibility 0s ease-in 0.2s, opacity 0s ease-in 0.2s;
+  transform: rotateY(0deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 0.1px solid;
+  background-color: #fffbd4;
+  margin: 10px auto;
+  padding-bottom: 20px;
+}
+
+
+
+.widget-front-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    position: relative;
+    overflow: hidden;
+    visibility: visible;
+    width: 98% !important;
+    opacity: 1;
+    z-index: 10;
+    border-radius: 8px;
+    transition: transform 0.5s ease-out 0s, visibility 0s ease-in 0.2s, opacity 0s ease-in 0.2s;
+    transform: rotateY(0deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid;
+    background-color: #ffffff;
+    margin: 10px auto;
+    padding-bottom: 20px;
+  }
+
+  .header{
+    display: flex;
+    width: 96% !important;
+    font-size: 1.5rem;
+    color: #231c1c;
+    padding: 20px 10px 15px 10px;
+  }
+
+  .headerNmae{
+    margin-top: 2.5px;
+    padding-left: 5px;
+  }
+
+  .imgBox{
+    object-fit: cover;
+    object-position:center; 
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+  
+  #file-input {
+    display: none;
+  }
+
+  #file-input-label {
+    background-color: #749dc4;
+    color: #000;
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+    width: 15.5%;
+    border: thin solid grey;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .label{
+    position: relative;
+    display: flex;
+    top: 0.8rem;
+    height: 12px;
+    font-size: 1.1rem;
+    padding: 0 10px 0 0;
+    background: transparent;
+    z-index: 100;
+    width: max-content;
+    color: #b7b7b7;
+    transition: all 0.3s ease-in-out;
+  }
+  
+ .labelShow{
+    height: 12px;
+    position: relative;
+    display: flex;
+    top: -0.9rem;
+    font-size: 0.6rem;
+    padding: 0 10px;
+    background-color: #fffbd4;
+    z-index: 100;
+    width: max-content;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding-top: 5px !important;
+  }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+table {
+  width: 100%;
+}
+
+.tableColor{
+  background-color: rgb(246 227 151) !important;
+}
+
+.pagination{
+  background-color: rgb(246 227 151) !important;
+  margin-top: 10px; 
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.12);
+}
+
+.digModal{
+  background-color: rgba(255, 248 ,220,1);
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.4), -5px -5px 10px rgba(0,0,0,0.4);
+}
+
+.center_extra{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.digModelInner{
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+  padding: 15px 25px !important;
+}
+
+.headerError{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 20px !important;
+  color: rgb(174, 29, 29);
+  font-family: sans-serif;
+
+}
+
+.msgError{
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: sans-serif;
+  margin-bottom: 20px !important;
+}
+
+
+.tableWrapper{
+  max-height: 50vh; 
+  min-height: 50vh; 
+  overflow-y: auto;
+  background-color: rgb(246 227 151) !important;
+}
+
+.navButton{
+  font-size: 1.2rem;
+  background: #edb773 !important;
+  padding: 20px 30px !important;
+  margin: 0 30px !important;
+}
+
+
+.updateColor{
+  background-color: #749dc4 !important;
+  color: #000 !important;
+}
+
+.updateColor:disabled{
+  background-color: #00000036 !important;
+  color: #575757 !important;
+}
+
+
+.backColor{
+  background-color: #eba64e !important;
+  color: #000 !important;
+}

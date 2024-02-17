@@ -1,0 +1,13 @@
+<div style="width: 20vw; height: 100vh;" (mouseleave)="closePopup()">
+    <div class="flex justify-end pr-4 pt-4" style="height: 10vh;">
+        <mat-icon class="cursor-pointer" (click)="closePopup()">cancel</mat-icon>
+    </div>
+
+    <div class="flex justify-center p-4" style="height: 90vh;">
+        <div class="flex flex-col" style="justify-content: flex-start; align-items: center; width: 100%; overflow-x: hidden;">
+            <div *ngFor="let menuItem of MenuArraydisp">
+                <div class="toolbarMenuButton" (click)="clickOntheElement(menuItem)" *ngIf="menuItem.roleaccessId >= roleId && roleId != 0">{{menuItem.name}}</div>
+            </div>
+        </div>
+    </div>
+</div>

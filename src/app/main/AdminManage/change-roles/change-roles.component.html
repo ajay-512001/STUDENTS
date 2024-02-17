@@ -1,0 +1,69 @@
+<div class="widget-front-panel">
+    <div class="header"><mat-icon>home</mat-icon> <span class="headerNmae">Assign Role Of User</span></div>
+
+    <div class="widget-top-panel w-full">
+        <form class="mt-10 ml-10 mr-10" [formGroup]="RoleFormGroup">
+            <div class="flex gap-10 mb-3">
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(roleObj.email != null && roleObj.email != '') ? 'labelShow' : 'label'">Email</span>
+                    <input type="email" color="primary" matInput [(ngModel)]="roleObj.email" formControlName = "email"><!-- placeholder="Enter your Email here" -->
+                    <mat-error>
+                      email required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(roleObj.username != null && roleObj.username != '') ? 'labelShow' : 'label'">User Name</span>
+                    <input type="text" color="primary" matInput [(ngModel)]="roleObj.username" formControlName = "username"> <!-- placeholder="Enter your User Name here" -->
+                    <mat-error>
+                    User Name required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(roleObj.password != null && roleObj.password != '') ? 'labelShow' : 'label'">Password</span>
+                    <input type="password" color="primary" [(ngModel)]="roleObj.password" matInput formControlName = "password" readonly><!--  placeholder="Enter your Password here" -->
+                    <mat-error>
+                        Password required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="flex gap-10 mb-3">
+                <mat-form-field appearance="outline"  class="w-1/3 pr-6">
+                    <span [ngClass]="(roleObj.role_id != null) ? 'labelShow' : 'label'">Class</span>
+                    <mat-select [(ngModel)]="roleObj.role_id" formControlName = "role_id"> <!-- placeholder="Select your Class here" -->
+                        <mat-option *ngFor="let role of roleArr" [value]="role.role_id">
+                        {{role.role_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+          </form>
+          <div class="flex"> 
+            <div class="flex w-full ml-28 flex-col gap-5">
+                <label *ngIf="!isshowImg">(upload Your Image)</label>
+                <img class="h-32 w-32 imgBox" [src]="roleObj.photo" *ngIf="isshowImg">
+                <input type="file" id="file-input" (change)="onFileSelected($event)">
+                <label style="width: 15%;" id="file-input-label" for="file-input">Select File</label>
+            </div>
+            <div class="w-1/3 flex flex-row gap-10 text-center items-end" *ngIf="s_role_id == 1">
+                <button mat-raised-button class="updateColor" (click)="updateRole()" [disabled]="RoleFormGroup.invalid">
+                    Update
+                </button>
+            </div>
+            <div class="w-1/3 flex flex-row gap-10 text-center items-end">
+                <button class="backColor"  mat-raised-button  (click)="goback()">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<dialog id="errorModal" class="digModal">
+    <div class="digModelInner">
+      <div class="headerError">Attention</div>
+      <div class="msgError">{{errormsg}}</div>
+      <button mat-raised-button color="warn" class="mt-6" onclick="errorModal.close()">Close</button>
+    </div>
+</dialog>
+  

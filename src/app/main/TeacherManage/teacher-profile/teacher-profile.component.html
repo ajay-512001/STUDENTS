@@ -1,0 +1,142 @@
+<div class="widget-front-panel">
+    <div class="header"><mat-icon>home</mat-icon> <span class="headerNmae">Teacher Profile Page</span></div>
+
+    <div class="widget-top-panel w-full">
+        <form class="mt-10 ml-10 mr-10" [formGroup]="profileFormGroup">
+            <div class="flex gap-10 mb-3">
+                <mat-form-field appearance="outline"  class="w-1/3" style="height: 95% !important;">
+                    <span [ngClass]="(profileObj.teacher_name != null && profileObj.teacher_name != '') ? 'labelShow' : 'label'">Full Name</span>
+                    <input type="text" color="primary" matInput [(ngModel)]="profileObj.teacher_name" formControlName = "teacher_name"><!-- placeholder="Enter your Full Name here" -->
+                    <mat-error>
+                        Full Name required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(profileObj.mobileno != null && profileObj.mobileno != '') ? 'labelShow' : 'label'">Contact Number</span>
+                    <input type="number" matInput [(ngModel)]="profileObj.mobileno" formControlName = "mobileno"><!-- placeholder="Enter your Mobile Number here" -->
+                    <mat-error>
+                        Mobile Number required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(profileObj.aadhar_no != null && profileObj.aadhar_no != '') ? 'labelShow' : 'label'">Aadhar Number</span>
+                    <input type="number" color="primary" [(ngModel)]="profileObj.aadhar_no" matInput formControlName = "aadhar_no"><!-- placeholder="Enter your Aadhar here" -->
+                    <mat-error>
+                        Aadhar required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="flex gap-10 mb-3">
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(profileObj.email != null && profileObj.email != '') ? 'labelShow' : 'label'">Email</span>
+                    <input type="email" color="primary" matInput [(ngModel)]="profileObj.email" formControlName = "email" readonly><!-- placeholder="Enter your Email here" -->
+                    <mat-error>
+                      email required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(profileObj.username != null && profileObj.username != '') ? 'labelShow' : 'label'">User Name</span>
+                    <input type="text" color="primary" matInput [(ngModel)]="profileObj.username" formControlName = "username" readonly> <!-- placeholder="Enter your User Name here" -->
+                    <mat-error>
+                    User Name required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(profileObj.teacher_id != null && profileObj.teacher_id != '') ? 'labelShow' : 'label'">Teacher Id</span>
+                    <input type="text" color="primary" [(ngModel)]="profileObj.teacher_id" matInput formControlName = "teacher_id" readonly><!--  placeholder="Enter your Password here" -->
+                    <mat-error>
+                        TeacherId required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="flex gap-10 mb-3">
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(profileObj.bdg != null && profileObj.bdg != '') ? 'labelShow' : 'label'">Blood Group</span>
+                    <input type="text" color="primary" matInput [(ngModel)]="profileObj.bdg" formControlName = "bdg"> <!-- placeholder="Enter your BloodGrop here" -->
+                    <mat-error>
+                      Blood Group required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(profileObj.hire_date != null && profileObj.hire_date != '') ? 'labelShow' : 'label'">Date Of Joining</span>
+                    <input class="date" matInput [(ngModel)]="profileObj.hire_date" formControlName = "hire_date" [matDatepicker]="picker"><!--  placeholder="Choose a Join Date" -->
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline"  class="w-1/3">
+                    <span [ngClass]="(profileObj.dob != null && profileObj.dob != '') ? 'labelShow' : 'label'">Date Of Birth</span>
+                    <input matInput [(ngModel)]="profileObj.dob" formControlName = "dob" [matDatepicker]="picker2"> <!-- placeholder="Choose a Birth Date" -->
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="flex mb-3">
+                <mat-checkbox [(ngModel)]="IstimeUpdate" [ngModelOptions]="{standalone: true}" (change)="checkTimeUpdate($event)">Please Select The checkbox to Update the Teacher Time Table.</mat-checkbox>
+            </div>
+            <div class="flex flex-row">
+                    <div class="flex flex-col w-5/6" *ngIf="timetableArry.length > 0">
+                        <div *ngFor="let timetable of timetableArry; let indxCnt=index">
+                            <div class="flex w-5/6 gap-10 mt-6 place-content-start">
+                                <mat-form-field appearance="outline"  class="w-1/3">
+                                    <span [ngClass]="(timetable.stream_id != null && timetable.stream_id != '') ? 'labelShow' : 'label'">Stream</span>
+                                    <mat-select [(ngModel)]="timetable.stream_id" [ngModelOptions]="{standalone: true}" [disabled]="!isTimeUpdate"> <!-- placeholder="Select your Stream here" -->
+                                        <mat-option *ngFor="let stream of streamArr" [value]="stream.stream_id">
+                                        {{stream.stream_name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline"  class="w-1/6">
+                                    <span [ngClass]="(timetable.class_id != null && timetable.class_id != '') ? 'labelShow' : 'label'">Class</span>
+                                    <mat-select [(ngModel)]="timetable.class_id" [ngModelOptions]="{standalone: true}" [disabled]="!isTimeUpdate"> <!-- placeholder="Select your Class here" -->
+                                        <mat-option *ngFor="let class of classesArr" [value]="class.class_id">
+                                        {{class.class_name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field> 
+                                <mat-form-field appearance="outline"  class="w-1/3">
+                                    <span [ngClass]="(timetable.subrole_id != null && timetable.subrole_id != '') ? 'labelShow' : 'label'">subrole</span>
+                                    <mat-select [(ngModel)]="timetable.subrole_id" [ngModelOptions]="{standalone: true}" [disabled]="!isTimeUpdate"> <!-- placeholder="Select your subrole here" -->
+                                        <mat-option *ngFor="let subrole of subroleArr" [value]="subrole.subrole_id">
+                                        {{subrole.subrole_name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>  
+                                <div class="w-1/1 mt-4">
+                                    <mat-icon *ngIf="timetableArry.length != indxCnt && isTimeUpdate" style="color: red; cursor: pointer;" (click)="removeTime(timetable)">close</mat-icon>
+                                </div>
+                                <div class="flex w-1/5 mt-2">
+                                    <button *ngIf="timetableArry.length-1 == indxCnt && timetableArry.length < max && isTimeUpdate" mat-raised-button class="updateColor" (click)="addMoreTime()">Add More</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="flex w-1/6 flex-col gap-5 justify-start items-center">
+                    <label *ngIf="!isshowImg">(upload Your Image)</label>
+                    <img class="h-32 w-32 imgBox" [src]="profileObj.photo" *ngIf="isshowImg">
+                    <input type="file" id="file-input" (change)="onFileSelected($event)">
+                    <label style="width: 50%;" id="file-input-label" for="file-input">Select File</label>
+                </div>
+            </div>
+            <div class="flex"> 
+                <div class="w-1/3 flex flex-row gap-10 mt-2 text-center items-end">
+                    <button mat-raised-button class="updateColor" (click)="updateProfile()" [disabled]="profileFormGroup.invalid || (roleid != '1' && roleid != '2')">
+                        Update
+                    </button>
+                    <button mat-raised-button class="backColor" (click)="goback()">
+                        Back
+                    </button>
+                </div>
+            </div>
+          </form>
+    </div>
+</div>
+
+
+
+<dialog id="errorModal" class="digModal">
+    <div class="digModelInner">
+      <div class="headerError">Attention</div>
+      <div class="msgError">{{errormsg}}</div>
+      <button mat-raised-button color="warn" class="mt-6" onclick="errorModal.close()">Close</button>
+    </div>
+</dialog>
