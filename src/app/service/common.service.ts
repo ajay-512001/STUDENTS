@@ -23,4 +23,8 @@ export class CommonService {
     getSubRoles(obj: any){
         return this.ajaxUtil.POST(this.baseUrl + 'getSubRoles',obj);
     }
+
+    excelUpload(obj: any){
+        return this.ajaxUtil.POST(this.baseUrl + 'excelUpload',obj);
+    }
 }

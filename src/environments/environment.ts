@@ -26,6 +26,12 @@ export const environment = {
           "path" : "/student",
           "name" : "Student List",
           "roleaccessId" : 2
+        },
+        {
+          "id" : 5,
+          "path" : "/excelUpload",
+          "name" : "Upload Excel Data",
+          "roleaccessId" : 2
         }
     ]
 };

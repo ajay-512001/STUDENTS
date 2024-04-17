@@ -46,7 +46,7 @@ export class ChangeRolesComponent implements OnInit{
       password : ['', [Validators.required]],
       role_id : ['', [Validators.required]]
     })
-    this.s_role_id = Number(sessionStorage.getItem("role_id"))
+    this.s_role_id = Number(sessionStorage.getItem("role_id"));
     if(sessionStorage.getItem("seesUserId") != undefined && sessionStorage.getItem("seesUserId") != null){
       this.user_id = sessionStorage.getItem("seesUserId");
     }else{
@@ -109,6 +109,8 @@ export class ChangeRolesComponent implements OnInit{
     var obj = {
       "s_user_id": Number(sessionStorage.getItem("user_id")),
       "s_role_id": Number(sessionStorage.getItem("role_id")),
+      "updated_by" : Number(sessionStorage.getItem("user_id")),
+      "roleName" :  this.roleArr.find((e:any) => e.role_id === this.roleObj.role_id).role_name
     }
 
     Object.assign(obj,this.roleObj)

@@ -5,7 +5,6 @@ import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/service/admin.service';
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -17,8 +16,9 @@ export class UserListComponent implements OnInit{
   displayedColumns: string[] = [/* 'view', */'changeRole' ,'user_id', 'username', 'role_id', 'email', 'created_at_disp','photo'];
   errormsg :any;
   dataSource = new MatTableDataSource();
+  public color = 'grey';
+  private speed = 0.01;
 
-  
   constructor(private datePipe: DatePipe,private router: Router, private dialog: MatDialog,  private adminService : AdminService) 
   {}
 
@@ -27,6 +27,9 @@ export class UserListComponent implements OnInit{
     this.loadInitData();
   }
 
+  // onAnimate(mesh: THREE.Mesh) {
+  //   mesh.rotation.x = mesh.rotation.y += this.speed;
+  // }
 
   loadInitData(){
     var obj = {
