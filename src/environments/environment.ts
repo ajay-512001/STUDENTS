@@ -32,6 +32,12 @@ export const environment = {
           "path" : "/excelUpload",
           "name" : "Upload Excel Data",
           "roleaccessId" : 2
+        },
+        {
+          "id" : 6,
+          "path" : "/notificationList",
+          "name" : "Notification History",
+          "roleaccessId" : 2
         }
     ]
 };

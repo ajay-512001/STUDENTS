@@ -18,10 +18,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { CommonService } from 'src/app/service/common.service';
 import { MatIconModule } from '@angular/material/icon';
+import { NotificationListComponent } from './notification-list/notification-list.component';
 
 
 const routes: Routes = [
   {path:"excelUpload",component:UploadExcleDataComponent},
+  {path:"notificationList",component:NotificationListComponent},
 ];
 
 @NgModule({
@@ -31,7 +33,7 @@ const routes: Routes = [
     FooterComponent,
     ToolbarComponent,
     UploadExcleDataComponent,
-    
+    NotificationListComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ const routes: Routes = [
     FooterComponent,
     ToolbarComponent,
     navToolbar,
-    UploadExcleDataComponent
+    UploadExcleDataComponent,
+    NotificationListComponent
   ]
 })
 export class SharedModule { }

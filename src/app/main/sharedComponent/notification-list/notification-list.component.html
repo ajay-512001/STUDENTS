@@ -1,0 +1,77 @@
+<div class="widget-front-panel">
+    <div class="header"><mat-icon>home</mat-icon> <span class="headerNmae">User List</span></div>
+
+    <div class="widget-top-panel w-full" style="border:0px;">
+
+        <div class="mat-elevation-z8">
+          <div class="tableWrapper">
+            <table mat-table [dataSource]="dataSource" class="tableColor"> 
+
+              <ng-container matColumnDef="email_from">
+                <th mat-header-cell *matHeaderCellDef> email from </th>
+                <td mat-cell *matCellDef="let element"> {{element.email_from}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="email_to">
+                <th mat-header-cell *matHeaderCellDef> email to </th>
+                <td mat-cell *matCellDef="let element"> {{element.email_to}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="send_at_disp">
+                <th mat-header-cell *matHeaderCellDef> send at </th>
+                <td mat-cell *matCellDef="let element"> {{element.send_at_disp}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="emailtype">
+                <th mat-header-cell *matHeaderCellDef> email type </th>
+                <td mat-cell *matCellDef="let element"> {{element.emailtype}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ispending">
+                <th mat-header-cell *matHeaderCellDef> ispending  </th>
+                <td mat-cell *matCellDef="let element"> {{element.ispending}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sendNotif">
+                <th mat-header-cell *matHeaderCellDef> sendNotif</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button class="updateColor" (click)= "sendNotification(element)" [disabled]="element.ispending || element.ispending == null">
+                        Update
+                    </button>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+            <mat-paginator class="pagination tableColor" [pageSizeOptions]="[10,50,100,500,1000]" showFirstLastButtons></mat-paginator>
+          </div>
+    </div>
+</div>
+
+<!-- <ngt-canvas>
+  <ngt-ambient-light></ngt-ambient-light>
+  <ngt-spot-light [position]="[2, 2, 2]"></ngt-spot-light>
+
+  <ngt-mesh
+    #mesh="ngtMesh"
+    (animateReady)="onAnimate(mesh.mesh)"
+    [position]="[0, 2, 0]"
+  >
+    <ngt-box-geometry></ngt-box-geometry>
+    <ngt-mesh-standard-material
+      [parameters]="{ color: 'red' }"
+    ></ngt-mesh-standard-material>
+  </ngt-mesh>
+</ngt-canvas> -->
+
+
+
+<dialog id="errorModal" class="digModal">
+    <div class="digModelInner">
+      <div class="headerError">Attention</div>
+      <div class="msgError">{{errormsg}}</div>
+      <button mat-raised-button color="warn" class="mt-6" onclick="errorModal.close()">Close</button>
+    </div>
+</dialog>
+  

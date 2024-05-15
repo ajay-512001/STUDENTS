@@ -27,4 +27,12 @@ export class CommonService {
     excelUpload(obj: any){
         return this.ajaxUtil.POST(this.baseUrl + 'excelUpload',obj);
     }
+
+    getNotifList(obj: any){
+        return this.ajaxUtil.POST(this.baseUrl + 'getNotifList',obj);
+    }
+
+    sendNotifbyId(obj: any){
+        return this.ajaxUtil.POST(this.baseUrl + 'sendNotifbyId',obj);
+    }
 }
